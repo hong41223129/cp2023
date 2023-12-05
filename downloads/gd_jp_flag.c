@@ -18,7 +18,7 @@ int main() {
     gdImageSetAntiAliased(img, red);
 
     // 绘制红色圆圈
-    int circle_radius = 100;
+    int circle_radius = 80; // 减小半径以使边缘更圆润
     int circle_x = width / 2;
     int circle_y = height / 2;
     gdImageFilledEllipse(img, circle_x, circle_y, circle_radius, circle_radius, red);
