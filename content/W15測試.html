@@ -142,15 +142,26 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">W13 << <a href='W13.html'>Previous</a> <a href='W6.html'>Next</a> >> W6<br /><h1>w10</h1>
-<p>線上簡報、網誌與多媒體影片製作工具:</p>
-<p><a href="https://leo-editor.github.io/leo-editor/">Leo Editor</a><span> </span>(<a href="https://groups.google.com/g/leo-editor">討論群組</a>) 為大綱管理系統, 可以當作程式開發的 IDE (Integrated Development Environment) 使用, 可用來編輯 reveal.js 簡報檔案中的 html 與 markdown, 也可用來編輯 Pelican 網誌 markdown 與轉檔, 並且在電腦輔助設計與分析過程中, 可以用來解讀 CoppeliaSim XML 格式檔案.</p>
-<p>因為 Python 3.12.0 環境下 Leo Editor 還無法正常透過 pip 安裝, 因此必須手動安裝 PyQt5 之後, 再使用 pip install leo, 所完成的 Python 3.12.0: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EYf6RiAqXAFJllAizi_-iZ4BT9ZEn8-bT2V8TVjd9p446Q?e=NSCciC">Python312_leo_664_PyQt5.7z</a><span> </span>(需要下載密碼)</p>
-<p><a href="https://www.debugmode.com/wink.html">Wink</a><span> </span>為操作流程影片製作套件, 可以在電腦操作過程, 儲存關鍵頁面與滑鼠點擊區域後, 加上輔助文字說明後製作成 mp4 影片檔.</p>
-<p><a href="https://github.com/ShareX/ShareX/releases">ShareX</a><span> </span>為螢幕畫面取像或錄影套件, 可以擷取電腦畫面任一區域存為影像檔, 或者結合語音說明與滑鼠操作錄製說明影片.</p>
-<p><a href="https://github.com/obsproject/obs-studio/releases">OBS</a><span> </span>為電腦廣播製作系統, 可以結合各種語音、圖像與影片製作出多元的電腦操作說明影片.</p>
-<p>Wink 與 ShareX 都需要<span> </span><a href="https://ffmpeg.org/download.html#build-windows">ffmpeq.exe</a>.</p>
-<br />W13 << <a href='W13.html'>Previous</a> <a href='W6.html'>Next</a> >> W6</div>
+    <div id="tipue_search_content">about << <a href='about.html'>Previous</a> <a href='W13.html'>Next</a> >> W13<br /><h1>W15測試</h1>
+<p>//https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_China<br/>// 內政部國旗參考資料: https://www.moi.gov.tw/cp.aspx?n=10621<br/>// cc roc_flag_in_gd.c -lgd -lm to link with gd and math library<br/>// https://www.rapidtables.com/web/color/RGB_Color.html<br/>// 幾何形狀著色與繪圖練習<br/>// 以下 gd 繪圖程式嘗試畫出 ROC 國旗, 請根據下列程式內容完成後續的國旗繪圖<br/>#include &lt;stdio.h&gt;<br/>#include &lt;gd.h&gt;<br/>#include &lt;math.h&gt;</p>
+<p>void draw_roc_flag(gdImagePtr img);<br/>void draw_white_sun(gdImagePtr img, int x, int y, int size, int color);</p>
+<p>int main() {<br/> // width 3: height 2<br/> int width = 1200;<br/> // 國旗長寬比為 3:2<br/> int height = (int)(width*2.0 / 3.0);</p>
+<p>gdImagePtr img = gdImageCreateTrueColor(width, height);<br/> gdImageAlphaBlending(img, 0);</p>
+<p>draw_roc_flag(img);</p>
+<p>FILE *outputFile = fopen("roc_flag_in_gd.png", "wb");<br/> if (outputFile == NULL) {<br/> fprintf(stderr, "Error opening the output file.\n");<br/> return 1;<br/> }<br/> gdImagePngEx(img, outputFile, 9);<br/> fclose(outputFile);<br/> gdImageDestroy(img);<br/> return 0;<br/>}</p>
+<p>void draw_roc_flag(gdImagePtr img) {<br/> int width = gdImageSX(img);<br/> int height = gdImageSY(img);<br/> int red, white, blue;<br/> // 白日位於青天面積正中央, 因此中心點座標為長寬各 1/4 處<br/> int center_x = (int)(width/4);<br/> int center_y = (int)(height/4);<br/> // gdImageFilledEllipse 需以長寬方向的 diameter 作圖<br/> // 由於中央白日圓形的半徑為青天寬度的 1/8<br/> // 因此中央白日圓形的直徑為青天寬度的 1/4, 也就是國旗寬度的 1/8<br/> // 而且白日十二道光芒的外圍圓形其半徑也是國旗寬度的1/8<br/> int sun_radius = (int)(width/8);<br/> // 中央白日圓形的直徑等於十二道光芒外圍圓形的半徑<br/> int white_circle_dia = sun_radius;<br/> // 中央藍色圓形半徑為中央白日的 1又 2/15<br/> int blue_circle_dia = white_circle_dia + white_circle_dia*2/15;<br/> // 根據 https://www.moi.gov.tw/cp.aspx?n=10621 訂定國旗三種顏色值<br/> red = gdImageColorAllocate(img, 255, 0, 0); // 紅色<br/> white = gdImageColorAllocate(img, 255, 255, 255); // 白色<br/> blue = gdImageColorAllocate(img, 0, 0, 149); // 藍色<br/> // 根據畫布大小塗上紅色長方形區域<br/> gdImageFilledRectangle(img, 0, 0, width, height, red);<br/> // 青天面積為整面國旗的 1/4, 也是採用長方形塗色<br/> gdImageFilledRectangle(img, 0, 0, (int)(width/2.0), (int)(height/2.0), blue);<br/> // 先設法以填色畫出六個白色堆疊菱形<br/> draw_white_sun(img, center_x, center_y, sun_radius, white);<br/> // 利用一個藍色大圓與白色小圓畫出藍色環狀<br/> gdImageFilledEllipse(img, center_x, center_y, blue_circle_dia, blue_circle_dia, blue);<br/> gdImageFilledEllipse(img, center_x, center_y, white_circle_dia, white_circle_dia, white);</p>
+<p>}</p>
+<p>void draw_white_sun(gdImagePtr img, int center_x, int center_y, int sun_radius, int color) {<br/> // M_PI 大小定義於 math.h 標頭檔中, 因為三角函數中採用徑度為角度單位<br/> // 因此定義將角度轉為徑度的轉換變數為 deg, 角度值乘上 deg 就可轉為徑度<br/> float deg = M_PI/180;<br/> // 根據十二道光芒的每一尖角的角度為 15 度, 求出其對應直角三角形的另一角度為 75 度<br/> // 求出十二道光芒中任一菱形的 small radius, 也就是菱形的另一個對應小圓的半徑大小<br/> float sr = sun_radius/tan(75*deg);<br/> int ax, ay, bx, by, dx, dy, ex, ey;<br/> gdPoint points[4];<br/> /* 在塗上十二道光芒中的單一菱形區域之前, 先以座標點畫線測試是否正確<br/> ax = center_x;<br/> ay = center_y - sun_radius;<br/> bx = center_x - sun_radius*tan(15*deg);<br/> by = center_y;<br/> ex = center_x;<br/> ey = center_y + sun_radius;<br/> dx = center_x + sun_radius*tan(15*deg);<br/> dy = center_y;<br/> // AB<br/> gdImageLine(img, ax, ay, bx, by, color);<br/> // BE<br/> gdImageLine(img, bx, by, ex, ey, color);<br/> // ED<br/> gdImageLine(img, ex, ey, dx, dy, color);<br/> // DA<br/> gdImageLine(img, dx, dy, ax, ay, color);<br/> */<br/> ax = center_x;<br/> ay = center_y - sun_radius;<br/> printf("%d,%d\n",ax, ay);<br/> bx = center_x - sun_radius*tan(15*deg);<br/> by = center_y;<br/> ex = center_x;<br/> ey = center_y + sun_radius;<br/> dx = center_x + sun_radius*tan(15*deg);<br/> dy = center_y;<br/> // 確定單一菱形區域的塗色正確後, 利用迴圈每次轉動 30 度, 總共轉六次即可塗上十二道光芒區域<br/> for (int i=1;i&lt;=6;i++){<br/> // A<br/> points[0].x = ax+sun_radius*sin(30*deg*i);<br/> points[0].y = ay+sun_radius-sun_radius*cos(30*deg*i);<br/> printf("A coord: (%d,%d)\n", points[0].x, points[0].y);<br/> // B<br/> points[1].x = bx+sr-sr*cos(30*deg*i);<br/> points[1].y = by-sr*sin(30*deg*i);<br/> printf("B coord: (%d,%d)\n", points[1].x, points[1].y);<br/> // E<br/> points[2].x = ex-sun_radius*sin(30*deg*i);<br/> points[2].y = ey-(sun_radius-sun_radius*cos(30*deg*i));<br/> printf("E coord: (%d,%d)\n", points[2].x, points[2].y);<br/> // D<br/> points[3].x = dx-(sr-sr*cos(30*deg*i));<br/> points[3].y = dy+sr*sin(30*deg*i);<br/> printf("D coord: (%d,%d)\n\n", points[2].x, points[2].y);<br/> // 對菱形區域範圍塗色<br/> gdImageFilledPolygon(img, points, 4, color);<br/> // 在菱形區域外圍畫線, 明確界定菱形範圍<br/> gdImagePolygon(img, points, 4, color);<br/> }<br/>}</p>
+<p><img alt="" height="339" src="./../images/roc_flag_in_gd.png" width="509"/></p>
+<h4>座標點</h4>
+<p>A coord: (375,70)<br/>B coord: (264,179)<br/>E coord: (224,329)<br/>D coord: (224,329)</p>
+<p>A coord: (429,125)<br/>B coord: (279,165)<br/>E coord: (170,274)<br/>D coord: (170,274)</p>
+<p>A coord: (449,200)<br/>B coord: (299,159)<br/>E coord: (150,199)<br/>D coord: (150,199)</p>
+<p>A coord: (429,275)<br/>B coord: (319,165)<br/>E coord: (170,124)<br/>D coord: (170,124)</p>
+<p>A coord: (375,329)<br/>B coord: (334,179)<br/>E coord: (224,70)<br/>D coord: (224,70)</p>
+<p>A coord: (299,349)<br/>B coord: (339,200)<br/>E coord: (300,50)<br/>D coord: (300,50)</p>
+<p></p>
+<br />about << <a href='about.html'>Previous</a> <a href='W13.html'>Next</a> >> W13</div>
         
     <!-- footer -->
       <div class="container">
