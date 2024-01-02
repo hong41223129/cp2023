@@ -2,6 +2,7 @@
         <head>
         <title>cmsite</title>
         <meta charset="utf-8">
+<meta property="head" content="H1">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,9 +142,42 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content"> <a href='W5.html'>Next</a> >> W5<br /><h1>about</h1>
-<p><a href="https://github.com/mdecycu/cmsite"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">https://github.com/mdecycu/cmsite</span></span></span></span></span></span></span></span></a></p>
-<br /> <a href='W5.html'>Next</a> >> W5</div>
+    <div id="tipue_search_content">W10 << <a href='W10.html'>Previous</a> <a href='W13.html'>Next</a> >> W13<br /><h1>W12</h1>
+<p>#include &lt;stdio.h&gt;<br/>#include &lt;gd.h&gt;<br/>#include &lt;math.h&gt;</p>
+<p>// Declare the rotation function<br/>void rotateFilledPolygon(int x_orig, int y_orig, double rotation_ang, gdPoint *points, int num_points) {<br/> int i;<br/> double angle_rad = rotation_ang * M_PI / 180.0;</p>
+<p>for (i = 0; i &lt; num_points; i++) {<br/> int x = points[i].x - x_orig;<br/> int y = points[i].y - y_orig;</p>
+<p>points[i].x = x_orig + (int)(x * cos(angle_rad) - y * sin(angle_rad));<br/> points[i].y = y_orig + (int)(x * sin(angle_rad) + y * cos(angle_rad));<br/> }<br/>}</p>
+<p>int main() {<br/> int width = 800;<br/> int height = 600;</p>
+<p>gdImagePtr img = gdImageCreateTrueColor(width, height);<br/> gdImageAlphaBlending(img, 0);</p>
+<p>FILE *outputFile = fopen("hellogd1.png", "wb");<br/> if (outputFile == NULL) {<br/> fprintf(stderr, "Error opening the output file.\n");<br/> return 1;<br/> }</p>
+<p>int red = gdImageColorAllocate(img, 255, 0, 0);<br/> int blue = gdImageColorAllocate(img, 0, 0, 255);<br/> int black = gdImageColorAllocate(img, 0, 0, 0);<br/> int white = gdImageColorAllocate(img, 255, 255, 255);</p>
+<p>gdImageFilledRectangle(img, 0, 0, width, height, white);<br/> gdImageFilledRectangle(img, 0, 0, (int)width / 4, (int)height / 4, blue);</p>
+<p>gdImageFilledEllipse(img, (int)width * 3 / 4, (int)height / 4, (int)width / 4, (int)width / 4, red);<br/> gdImageEllipse(img, (int)width * 3 / 4, (int)height * 3 / 4, (int)width / 4, (int)width / 4, red);<br/> gdImageLine(img, (int)width / 2, (int)height / 2, (int)width / 2, (int)height / 2 + 100, blue);</p>
+<p>gdPoint points[4];<br/> points[0].x = (int)width / 4;<br/> points[0].y = (int)height * 3 / 4;<br/> points[1].x = points[0].x + 100;<br/> points[1].y = points[0].y;<br/> points[2].x = points[1].x;<br/> points[2].y = points[1].y + 100;<br/> points[3].x = points[2].x - 100;<br/> points[3].y = points[2].y;</p>
+<p>// Call the rotation function<br/> rotateFilledPolygon((int)width / 4 + 50, (int)height * 3 / 4 + 50, 45.0, points, 4);<br/> gdImagePolygon(img, points, 4, black);</p>
+<p>gdPoint points2[4];<br/> points2[0].x = (int)width / 3;<br/> points2[0].y = (int)height / 2;<br/> points2[1].x = points2[0].x + 100;<br/> points2[1].y = points2[0].y;<br/> points2[2].x = points2[1].x;<br/> points2[2].y = points2[1].y + 100;<br/> points2[3].x = points2[2].x - 150;<br/> points2[3].y = points2[2].y;</p>
+<p>// Call the rotation function<br/> rotateFilledPolygon((int)width / 3 + 50, (int)height / 2 + 50, 30.0, points2, 4);<br/> gdImageFilledPolygon(img, points2, 4, red);</p>
+<p>gdImagePngEx(img, outputFile, 9);<br/> fclose(outputFile);<br/> gdImageDestroy(img);</p>
+<p>return 0;<br/>}</p>
+<p><img alt="" height="400" src="./../images/hellogd1.png" width="533"/></p>
+<p>#include &lt;stdio.h&gt;<br/>#include &lt;gd.h&gt;<br/>#include &lt;math.h&gt;</p>
+<p>// Declare the rotation function<br/>void rotateFilledPolygon(int x_orig, int y_orig, double rotation_ang, gdPoint *points, int num_points) {<br/> int i;<br/> double angle_rad = rotation_ang * M_PI / 180.0;</p>
+<p>for (i = 0; i &lt; num_points; i++) {<br/> int x = points[i].x - x_orig;<br/> int y = points[i].y - y_orig;</p>
+<p>points[i].x = x_orig + (int)(x * cos(angle_rad) - y * sin(angle_rad));<br/> points[i].y = y_orig + (int)(x * sin(angle_rad) + y * cos(angle_rad));<br/> }<br/>}</p>
+<p>int main() {<br/> int width = 800;<br/> int height = 600;</p>
+<p>gdImagePtr img = gdImageCreateTrueColor(width, height);<br/> gdImageAlphaBlending(img, 0);</p>
+<p>FILE *outputFile = fopen("hellogd2.png", "wb");<br/> if (outputFile == NULL) {<br/> fprintf(stderr, "Error opening the output file.\n");<br/> return 1;<br/> }</p>
+<p>int red = gdImageColorAllocate(img, 255, 0, 0);<br/> int blue = gdImageColorAllocate(img, 0, 0, 255);<br/> int black = gdImageColorAllocate(img, 0, 0, 0);<br/> int white = gdImageColorAllocate(img, 255, 255, 255);</p>
+<p>gdImageFilledRectangle(img, 0, 0, width, height, white);<br/> gdImageFilledRectangle(img, 0, 0, (int)width / 4, (int)height / 4, blue);</p>
+<p>gdImageFilledEllipse(img, (int)width * 3 / 4, (int)height / 4, (int)width / 4, (int)width / 4, red);<br/> gdImageEllipse(img, (int)width * 3 / 4, (int)height * 3 / 4, (int)width / 4, (int)width / 4, red);<br/> gdImageLine(img, (int)width / 2, (int)height / 2, (int)width / 2, (int)height / 2 + 100, blue);</p>
+<p>gdPoint points[4];<br/> points[0].x = (int)width / 4;<br/> points[0].y = (int)height * 3 / 4;<br/> points[1].x = points[0].x + 100;<br/> points[1].y = points[0].y;<br/> points[2].x = points[1].x;<br/> points[2].y = points[1].y + 100;<br/> points[3].x = points[2].x - 100;<br/> points[3].y = points[2].y;</p>
+<p>// Call the rotation function multiple times<br/> for (int i = 0; i &lt; 4; i++) {<br/> rotateFilledPolygon((int)width / 4 + 50, (int)height * 3 / 4 + 50, 30.0, points, 4);<br/> gdImagePolygon(img, points, 4, black);<br/> }</p>
+<p>gdPoint points2[4];<br/> points2[0].x = (int)width / 3;<br/> points2[0].y = (int)height / 2;<br/> points2[1].x = points2[0].x + 100;<br/> points2[1].y = points2[0].y;<br/> points2[2].x = points2[1].x;<br/> points2[2].y = points2[1].y + 100;<br/> points2[3].x = points2[2].x - 150;<br/> points2[3].y = points2[2].y;</p>
+<p>// Call the rotation function multiple times<br/> for (int i = 0; i &lt; 12; i++) {<br/> //rotateFilledPolygon((int)width / 3 + 50, (int)height / 2 + 50, 30.0, points2, 4);<br/> rotateFilledPolygon(500, 200, 30.0, points2, 4);<br/> gdImageFilledPolygon(img, points2, 4, red);<br/> }</p>
+<p>gdImagePngEx(img, outputFile, 9);<br/> fclose(outputFile);<br/> gdImageDestroy(img);</p>
+<p>return 0;<br/>}</p>
+<p><img alt="" height="425" src="./../images/hellogd2.png" width="567"/></p>
+<br />W10 << <a href='W10.html'>Previous</a> <a href='W13.html'>Next</a> >> W13</div>
         
     <!-- footer -->
       <div class="container">
